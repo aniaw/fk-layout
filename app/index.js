@@ -3,12 +3,19 @@ const vi = document.getElementById("vi");
 const viContent = document.getElementById("viContent");
 const footerPanel = document.getElementById("footerPanel");
 const body = document.getElementsByTagName("body");
+const shake = document.getElementById("shake");
 
-configurator.addEventListener(
-  "mouseenter",
-  function() {
+shake.addEventListener(
+  "click",
+  function () {
+    const scrollPositon = window.scrollY;
+    requestAnimationFrame(() => {
+      window.scrollY = scrollPositon;
+      console.log('raf')
+    });
+    console.log('classes')
     vi.classList.add("activeVisual");
-    // viContent.classList.add("activeViContent");
+    viContent.classList.add("viContent");
     configurator.classList.add("hiddenConfig");
     footerPanel.classList.add("hiddenFP");
     body[0].classList.add("bodyOverflow");
@@ -16,10 +23,17 @@ configurator.addEventListener(
   true
 );
 
-configurator.addEventListener("click", function() {
+shake.addEventListener("dblclick", function () {
   vi.classList.remove("activeVisual");
-  // viContent.classList.remove("activeViContent");
+  viContent.classList.remove("viContent");
   configurator.classList.remove("hiddenConfig");
   footerPanel.classList.remove("hiddenFP");
   body[0].classList.remove("bodyOverflow");
 });
+
+shake.addEventListener('mouseenter', () => {
+  shake.classList.add("shakeActive");
+})
+shake.addEventListener('mouseleave', () => {
+  shake.classList.remove("shakeActive");
+})
