@@ -85,13 +85,16 @@ unactiveAccordion.addEventListener('click', () => {
 })
 
 accessoriesButton.addEventListener('click', () => {
+
   if (isTabVisible) {
     accessories.classList.add("showAccessories");
     configurator.classList.add("hideConfigurator");
+    accessoriesButton.textContent = "show options"
   }
   else {
     accessories.classList.remove("showAccessories");
     configurator.classList.remove("hideConfigurator");
+    accessoriesButton.textContent = "add accessories"
   }
 
   isTabVisible = !isTabVisible;
