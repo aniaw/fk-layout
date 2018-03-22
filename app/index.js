@@ -1,39 +1,50 @@
 const configurator = document.getElementById("configurator");
-const vi = document.getElementById("vi");
-const viContent = document.getElementById("viContent");
+const visualisation = document.getElementById("visualisation");
 const footerPanel = document.getElementById("footerPanel");
 const body = document.getElementsByTagName("body");
-const shake = document.getElementById("shake");
 
-shake.addEventListener(
-  "click",
-  function () {
-    const scrollPositon = window.scrollY;
-    requestAnimationFrame(() => {
-      window.scrollY = scrollPositon;
-      console.log('raf')
-    });
-    console.log('classes')
-    vi.classList.add("activeVisual");
-    viContent.classList.add("viContent");
-    configurator.classList.add("hiddenConfig");
-    footerPanel.classList.add("hiddenFP");
-    body[0].classList.add("bodyOverflow");
-  },
-  true
-);
+let isVisualisatioVisible = false;
 
-shake.addEventListener("dblclick", function () {
-  vi.classList.remove("activeVisual");
-  viContent.classList.remove("viContent");
-  configurator.classList.remove("hiddenConfig");
-  footerPanel.classList.remove("hiddenFP");
-  body[0].classList.remove("bodyOverflow");
-});
-
-shake.addEventListener('mouseenter', () => {
-  shake.classList.add("shakeActive");
+visualisation.addEventListener('mouseenter', () => {
+  if (!isVisualisatioVisible) {
+    configurator.classList.add("moveConfigRight")
+  }
 })
-shake.addEventListener('mouseleave', () => {
-  shake.classList.remove("shakeActive");
+
+visualisation.addEventListener('mouseleave', () => {
+  configurator.classList.remove("moveConfigRight");
+})
+
+configurator.addEventListener('mouseenter', () => {
+  if (isVisualisatioVisible) {
+    configurator.classList.add("moveConfigLeft");
+  }
+})
+
+configurator.addEventListener('mouseleave', () => {
+  configurator.classList.remove("moveConfigLeft");
+})
+
+visualisation.addEventListener('click', () => {
+  isVisualisatioVisible = true;
+  configurator.classList.remove("moveConfigRight");
+
+  if (isVisualisatioVisible) {
+    visualisation.classList.add("activeVisualisation");
+    configurator.classList.add("hiddenConfig");
+    footerPanel.classList.add("hiddenFooterPanel");
+    body[0].classList.add("bodyScroll");
+  }
+})
+
+configurator.addEventListener('click', () => {
+  configurator.classList.remove("moveConfigLeft");
+  if (isVisualisatioVisible) {
+    visualisation.classList.remove("activeVisualisation");
+    configurator.classList.remove("hiddenConfig");
+    footerPanel.classList.remove("hiddenFooterPanel");
+    body[0].classList.remove("bodyScroll");
+  }
+  isVisualisatioVisible = false;
+
 })
