@@ -5,11 +5,13 @@ const accessories = document.getElementById("accessories");
 const visualisationImg = document.getElementById("visualisationImg");
 const footerPanel = document.getElementById("footerPanel");
 const accordion = document.getElementById("accordion");
+const unactiveAccordion = document.getElementById("unactiveAccordion");
 const accessoriesButton = document.getElementById("accessoriesButton");
 const tab = document.getElementById("tab");
 
 let isVisualisatioVisible = false;
-let isConfigVisible = true;
+let isTabVisible = true;
+let isAccordionActive = false;
 
 const showVisualisation = () => {
   isVisualisatioVisible = true;
@@ -20,9 +22,8 @@ const showVisualisation = () => {
     visualisationImg.classList.add("visualisationImgActive");
 
     tab.classList.add("hiddenTab");
-
     footerPanel.classList.add("hiddenFooterPanel");
-    accordion.classList.add("activeAccordion")
+    unactiveAccordion.classList.add("animateAccordion")
     body[0].classList.add("bodyScroll");
   }
 }
@@ -36,6 +37,7 @@ const hideVisualisation = () => {
     tab.classList.remove("hiddenTab");
 
     footerPanel.classList.remove("hiddenFooterPanel");
+    unactiveAccordion.classList.remove("animateAccordion")
     accordion.classList.remove("activeAccordion")
     body[0].classList.remove("bodyScroll");
   }
@@ -72,8 +74,18 @@ tab.addEventListener('mouseleave', () => {
   tab.classList.remove("moveTabLeft");
 })
 
+unactiveAccordion.addEventListener('click', () => {
+  if (!isAccordionActive) {
+    accordion.classList.add("activeAccordion");
+  }
+  else {
+    accordion.classList.remove("activeAccordion");
+  }
+  isAccordionActive = !isAccordionActive;
+})
+
 accessoriesButton.addEventListener('click', () => {
-  if (isConfigVisible) {
+  if (isTabVisible) {
     accessories.classList.add("showAccessories");
     configurator.classList.add("hideConfigurator");
   }
@@ -82,7 +94,7 @@ accessoriesButton.addEventListener('click', () => {
     configurator.classList.remove("hideConfigurator");
   }
 
-  isConfigVisible = !isConfigVisible;
+  isTabVisible = !isTabVisible;
   let isVisualisatioVisible = false;
 
 })
