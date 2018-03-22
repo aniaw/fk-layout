@@ -6,21 +6,20 @@ const visualisationImg = document.getElementById("visualisationImg");
 const footerPanel = document.getElementById("footerPanel");
 const accordion = document.getElementById("accordion");
 const accessoriesButton = document.getElementById("accessoriesButton");
+const tab = document.getElementById("tab");
 
 let isVisualisatioVisible = false;
 let isConfigVisible = true;
 
 const showVisualisation = () => {
   isVisualisatioVisible = true;
-  configurator.classList.remove("moveTabRight");
-  accessories.classList.remove("moveTabRight");
+  tab.classList.remove("moveTabRight");
 
   if (isVisualisatioVisible) {
     visualisation.classList.add("activeVisualisation");
     visualisationImg.classList.add("visualisationImgActive");
 
-    configurator.classList.add("hiddenTab");
-    accessories.classList.add("hiddenTab");
+    tab.classList.add("hiddenTab");
 
     footerPanel.classList.add("hiddenFooterPanel");
     accordion.classList.add("activeAccordion")
@@ -28,15 +27,13 @@ const showVisualisation = () => {
   }
 }
 const hideVisualisation = () => {
-  configurator.classList.remove("moveTabLeft");
-  accessories.classList.remove("moveTabLeft");
+  tab.classList.remove("moveTabLeft");
 
   if (isVisualisatioVisible) {
     visualisation.classList.remove("activeVisualisation");
     visualisationImg.classList.remove("visualisationImgActive");
 
-    configurator.classList.remove("hiddenTab");
-    accessories.classList.remove("hiddenTab");
+    tab.classList.remove("hiddenTab");
 
     footerPanel.classList.remove("hiddenFooterPanel");
     accordion.classList.remove("activeAccordion")
@@ -46,50 +43,33 @@ const hideVisualisation = () => {
 }
 
 // VISUALISATION
-
 visualisation.addEventListener('mouseenter', () => {
   if (!isVisualisatioVisible) {
-    configurator.classList.add("moveTabRight")
-    accessories.classList.add("moveTabRight")
+    tab.classList.add("moveTabRight")
   }
 })
 
 visualisation.addEventListener('mouseleave', () => {
-  configurator.classList.remove("moveTabRight");
-  accessories.classList.remove("moveTabRight");
-})
-
-// CONFIGURATOR
-configurator.addEventListener('mouseenter', () => {
-  if (isVisualisatioVisible) {
-    configurator.classList.add("moveTabLeft");
-  }
-})
-
-configurator.addEventListener('mouseleave', () => {
-  configurator.classList.remove("moveTabLeft");
-})
-
-// ACCESSORIES
-accessories.addEventListener('mouseenter', () => {
-  if (isVisualisatioVisible) {
-    accessories.classList.add("moveTabLeft");
-  }
-})
-accessories.addEventListener('mouseleave', () => {
-  accessories.classList.remove("moveTabLeft");
+  tab.classList.remove("moveTabRight");
 })
 
 visualisation.addEventListener('click', () => {
   showVisualisation();
 })
 
-configurator.addEventListener('click', () => {
+tab.addEventListener('click', () => {
   hideVisualisation();
 })
 
-accessories.addEventListener('click', () => {
-  hideVisualisation();
+// TAB
+tab.addEventListener('mouseenter', () => {
+  if (isVisualisatioVisible) {
+    tab.classList.add("moveTabLeft");
+  }
+})
+
+tab.addEventListener('mouseleave', () => {
+  tab.classList.remove("moveTabLeft");
 })
 
 accessoriesButton.addEventListener('click', () => {
