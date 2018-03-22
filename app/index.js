@@ -1,5 +1,6 @@
 const configurator = document.getElementById("configurator");
 const visualisation = document.getElementById("visualisation");
+const visualisationImg = document.getElementById("visualisationImg");
 const footerPanel = document.getElementById("footerPanel");
 const body = document.getElementsByTagName("body");
 
@@ -31,6 +32,7 @@ visualisation.addEventListener('click', () => {
 
   if (isVisualisatioVisible) {
     visualisation.classList.add("activeVisualisation");
+    visualisationImg.classList.add("visualisationImgActive");
     configurator.classList.add("hiddenConfig");
     footerPanel.classList.add("hiddenFooterPanel");
     body[0].classList.add("bodyScroll");
@@ -41,6 +43,7 @@ configurator.addEventListener('click', () => {
   configurator.classList.remove("moveConfigLeft");
   if (isVisualisatioVisible) {
     visualisation.classList.remove("activeVisualisation");
+    visualisationImg.classList.remove("visualisationImgActive");
     configurator.classList.remove("hiddenConfig");
     footerPanel.classList.remove("hiddenFooterPanel");
     body[0].classList.remove("bodyScroll");

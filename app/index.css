@@ -43,9 +43,12 @@ body {
 }
 
 .visualisationImg {
-  background: url('product.png') no-repeat;
-  width: 100vw;
-  height: 200%;
+  background-image: url('product.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1000px;
+  height: 100%;
+  transform: translate3d(55%, 0, 0)
 }
 
 .footerPanel {
@@ -61,6 +64,10 @@ body {
 .activeVisualisation {
   overflow-y: auto;
   cursor: auto;
+}
+
+.visualisationImgActive {
+
 }
 
 .hiddenConfig {
