@@ -84,7 +84,7 @@ body {
   background-size: contain;
   width: 600px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 5%;
   left: 50%;
   z-index: -1;
