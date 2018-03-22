@@ -1,8 +1,9 @@
+const body = document.getElementsByTagName("body");
 const configurator = document.getElementById("configurator");
 const visualisation = document.getElementById("visualisation");
 const visualisationImg = document.getElementById("visualisationImg");
 const footerPanel = document.getElementById("footerPanel");
-const body = document.getElementsByTagName("body");
+const accordion = document.getElementById("accordion");
 
 let isVisualisatioVisible = false;
 
@@ -35,6 +36,7 @@ visualisation.addEventListener('click', () => {
     visualisationImg.classList.add("visualisationImgActive");
     configurator.classList.add("hiddenConfig");
     footerPanel.classList.add("hiddenFooterPanel");
+    accordion.classList.add("activeAccordion")
     body[0].classList.add("bodyScroll");
   }
 })
@@ -46,6 +48,7 @@ configurator.addEventListener('click', () => {
     visualisationImg.classList.remove("visualisationImgActive");
     configurator.classList.remove("hiddenConfig");
     footerPanel.classList.remove("hiddenFooterPanel");
+    accordion.classList.remove("activeAccordion")
     body[0].classList.remove("bodyScroll");
   }
   isVisualisatioVisible = false;
