@@ -22,7 +22,7 @@ const showVisualisation = () => {
     visualisationImg.classList.add("visualisationImgActive");
 
     tab.classList.add("hiddenTab");
-    footerPanel.classList.add("hiddenFooterPanel");
+    // footerPanel.classList.add("hiddenFooterPanel");
     unactiveAccordion.classList.add("animateAccordion")
     body[0].classList.add("bodyScroll");
   }
@@ -36,7 +36,7 @@ const hideVisualisation = () => {
 
     tab.classList.remove("hiddenTab");
 
-    footerPanel.classList.remove("hiddenFooterPanel");
+    // footerPanel.classList.remove("hiddenFooterPanel");
     unactiveAccordion.classList.remove("animateAccordion")
     accordion.classList.remove("activeAccordion")
     body[0].classList.remove("bodyScroll");
@@ -86,6 +86,8 @@ unactiveAccordion.addEventListener('click', () => {
 
 accessoriesButton.addEventListener('click', () => {
 
+  hideVisualisation();
+
   if (isTabVisible) {
     accessories.classList.add("showAccessories");
     configurator.classList.add("hideConfigurator");
@@ -98,6 +100,6 @@ accessoriesButton.addEventListener('click', () => {
   }
 
   isTabVisible = !isTabVisible;
-  let isVisualisatioVisible = false;
+  // let isVisualisatioVisible = false;
 
 })
