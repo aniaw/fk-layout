@@ -22,7 +22,6 @@ const showVisualisation = () => {
     visualisationImg.classList.add("visualisationImgActive");
 
     tab.classList.add("hiddenTab");
-    // footerPanel.classList.add("hiddenFooterPanel");
     unactiveAccordion.classList.add("animateAccordion")
     body[0].classList.add("bodyScroll");
   }
@@ -36,7 +35,6 @@ const hideVisualisation = () => {
 
     tab.classList.remove("hiddenTab");
 
-    // footerPanel.classList.remove("hiddenFooterPanel");
     unactiveAccordion.classList.remove("animateAccordion")
     accordion.classList.remove("activeAccordion")
     body[0].classList.remove("bodyScroll");
@@ -85,21 +83,24 @@ unactiveAccordion.addEventListener('click', () => {
 })
 
 accessoriesButton.addEventListener('click', () => {
-
   hideVisualisation();
+  tab.classList.add('tabClear');
 
-  if (isTabVisible) {
-    accessories.classList.add("showAccessories");
-    configurator.classList.add("hideConfigurator");
-    accessoriesButton.textContent = "show options"
-  }
-  else {
-    accessories.classList.remove("showAccessories");
-    configurator.classList.remove("hideConfigurator");
-    accessoriesButton.textContent = "add accessories"
-  }
+  setTimeout(() => {
+    tab.classList.remove('tabClear');
+  }, 500);
 
-  isTabVisible = !isTabVisible;
-  // let isVisualisatioVisible = false;
+if (isTabVisible) {
+  accessories.classList.add("showAccessories");
+  configurator.classList.add("hideConfigurator");
+  accessoriesButton.textContent = "show options"
+}
+else {
+  accessories.classList.remove("showAccessories");
+  configurator.classList.remove("hideConfigurator");
+  accessoriesButton.textContent = "add accessories"
+}
+
+isTabVisible = !isTabVisible;
 
 })
