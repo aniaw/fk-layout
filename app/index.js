@@ -23,7 +23,7 @@ const showVisualisation = () => {
     visualisationImg.classList.add("visualisationImgActive");
 
     tab.classList.add("hiddenTab");
-    unactiveAccordion.classList.add("animateAccordion")
+    unactiveAccordion.classList.add("unactiveAccordionShow")
     body[0].classList.add("bodyScroll");
   }
 }
@@ -36,7 +36,7 @@ const hideVisualisation = () => {
 
     tab.classList.remove("hiddenTab");
 
-    unactiveAccordion.classList.remove("animateAccordion")
+    unactiveAccordion.classList.remove("unactiveAccordionShow")
     accordion.classList.remove("activeAccordion")
     body[0].classList.remove("bodyScroll");
   }
