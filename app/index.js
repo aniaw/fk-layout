@@ -87,23 +87,25 @@ unactiveAccordion.addEventListener('click', () => {
 
 accessoriesButton.addEventListener('click', () => {
   hideVisualisation();
-  tab.classList.add('tabClear');
 
-  setTimeout(() => {
-    tab.classList.remove('tabClear');
-  }, 500);
+  if (isTabVisible) {
+    //show accessories with delay
+    setTimeout(() => {
+      accessories.classList.add("showAccessories");
+    }, 400)
+    configurator.classList.add("hideConfigurator");
+    accessoriesButton.textContent = "show options"
+  }
+  else {
+    accessories.classList.remove("showAccessories");
 
-if (isTabVisible) {
-  accessories.classList.add("showAccessories");
-  configurator.classList.add("hideConfigurator");
-  accessoriesButton.textContent = "show options"
-}
-else {
-  accessories.classList.remove("showAccessories");
-  configurator.classList.remove("hideConfigurator");
-  accessoriesButton.textContent = "add accessories"
-}
+    //show configurator with delay
+    setTimeout(() => {
+      configurator.classList.remove("hideConfigurator");
+    }, 400)
+    accessoriesButton.textContent = "add accessories"
+  }
 
-isTabVisible = !isTabVisible;
+  isTabVisible = !isTabVisible;
 
 })
