@@ -26,16 +26,12 @@ body {
 
 .page {
   width: 100%;
-  max-width: 1360px;
-  min-width: 1060px;
   margin: 0 auto;
   position: relative;
-  /* border: 2px solid black; */
 }
 
 .tab {
-  width: 100%;
-  max-width: 900px;
+  width: 70%;
   height: 1600px;
   position: relative;
   z-index: 1;
@@ -51,10 +47,9 @@ body {
 .configurator {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
-  max-width: 900px;
   height: 1600px;
   transition: transform 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
-  padding: 40px;
+  padding: 5% 15% 0 30%;
   position: absolute;
   top: 0;
   left: 0;
@@ -70,11 +65,9 @@ body {
 .accessories {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
-  max-width: 900px;
   height: 1000px;
   transition: transform 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
-  padding: 80px 150px 0;
-  /* display: none; */
+  padding: 5% 20% 0 40%;
   position: absolute;
   top: 0;
   left: 0;
@@ -103,12 +96,11 @@ body {
   background-image: url('assets/product.png');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 600px;
+  width: 800px;
   height: 100%;
   position: fixed;
   top: 5%;
-  left: 50%;
-  transform: translate(-50%, 0, 0);
+  left: 60%;
   z-index: -1;
   transition: transform 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
 }
@@ -168,8 +160,6 @@ body {
 
 .footerPanel {
   width: 100%;
-  max-width: 1360px;
-  min-width: 1060px;
   background-color: #f3f3f3;
   height: 80px;
   position: fixed;
