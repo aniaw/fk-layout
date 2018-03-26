@@ -43,6 +43,27 @@ const hideVisualisation = () => {
   isVisualisatioVisible = false;
 }
 
+const switchTab = () => {
+
+  if (isTabVisible) {
+    //show accessories with delay
+    setTimeout(() => {
+      accessories.classList.add("showAccessories");
+    }, 400)
+    configurator.classList.add("hideConfigurator");
+    accessoriesButton.textContent = "show options"
+  }
+  else {
+    accessories.classList.remove("showAccessories");
+
+    //show configurator with delay
+    setTimeout(() => {
+      configurator.classList.remove("hideConfigurator");
+    }, 400)
+    accessoriesButton.textContent = "add accessories"
+  }
+}
+
 // VISUALISATION
 visualisation.addEventListener('mouseenter', () => {
   if (!isVisualisatioVisible) {
@@ -86,26 +107,16 @@ unactiveAccordion.addEventListener('click', () => {
 })
 
 accessoriesButton.addEventListener('click', () => {
-  hideVisualisation();
-
-  if (isTabVisible) {
-    //show accessories with delay
-    setTimeout(() => {
-      accessories.classList.add("showAccessories");
-    }, 400)
-    configurator.classList.add("hideConfigurator");
-    accessoriesButton.textContent = "show options"
+  if (!isVisualisatioVisible) {
+    hideVisualisation();
+    switchTab();
   }
   else {
-    accessories.classList.remove("showAccessories");
-
-    //show configurator with delay
+    hideVisualisation();
     setTimeout(() => {
-      configurator.classList.remove("hideConfigurator");
-    }, 400)
-    accessoriesButton.textContent = "add accessories"
+      switchTab();
+    }, 500)
   }
-
   isTabVisible = !isTabVisible;
 
 })
