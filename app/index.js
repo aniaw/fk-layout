@@ -16,6 +16,7 @@ let isAccordionActive = false;
 const showVisualisation = () => {
   isVisualisatioVisible = true;
   tab.classList.remove("moveTabRight");
+  visualisationImg.classList.remove("moveImageShake")
 
   if (isVisualisatioVisible) {
     visualisation.classList.add("activeVisualisation");
@@ -46,11 +47,13 @@ const hideVisualisation = () => {
 visualisation.addEventListener('mouseenter', () => {
   if (!isVisualisatioVisible) {
     tab.classList.add("moveTabRight")
+    visualisationImg.classList.add("moveImageShake")
   }
 })
 
 visualisation.addEventListener('mouseleave', () => {
   tab.classList.remove("moveTabRight");
+  visualisationImg.classList.remove("moveImageShake")
 })
 
 visualisation.addEventListener('click', () => {
