@@ -44,7 +44,6 @@ const hideVisualisation = () => {
 }
 
 const switchTab = () => {
-
   if (isTabVisible) {
     //show accessories with delay
     setTimeout(() => {
@@ -62,6 +61,7 @@ const switchTab = () => {
     }, 400)
     accessoriesButton.textContent = "add accessories"
   }
+  isTabVisible = !isTabVisible;
 }
 
 // VISUALISATION
@@ -112,11 +112,11 @@ accessoriesButton.addEventListener('click', () => {
     switchTab();
   }
   else {
+    console.log('jestes', isVisualisatioVisible);
     hideVisualisation();
     setTimeout(() => {
+      console.log('timeuot?');
       switchTab();
     }, 500)
   }
-  isTabVisible = !isTabVisible;
-
 })
