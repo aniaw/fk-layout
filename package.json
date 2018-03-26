@@ -8,5 +8,8 @@
     "gulp-less": "3.3.0",
     "gulp-open": "2.0.0",
     "less": "2.7.2"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/gulp"
   }
 }
