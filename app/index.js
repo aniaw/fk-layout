@@ -5,44 +5,49 @@ const accessories = document.getElementById("accessories");
 const visualisationImg = document.getElementById("visualisationImg");
 const footerPanel = document.getElementById("footerPanel");
 const accordion = document.getElementById("accordion");
-const unactiveAccordion = document.getElementById("unactiveAccordion");
+const accordionUnactive = document.getElementById("accordionUnactive");
 const accessoriesButton = document.getElementById("accessoriesButton");
 const tab = document.getElementById("tab");
 const addAccessoriesButton = document.getElementById("addAccessoriesButton");
 const backToConfiguratorButton = document.getElementById("backToConfiguratorButton");
 const goToSummaryButton = document.getElementById("goToSummaryButton");
+const configuratorImg = document.getElementById("configuratorImg");
+const accessoriesImg = document.getElementById("accessoriesImg");
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
 let isAccordionActive = false;
 
 const showVisualisation = () => {
-  isVisualisatioVisible = true;
   tab.classList.remove("moveTabRight");
-  visualisationImg.classList.remove("moveImageShake")
+  visualisationImg.classList.remove("moveImageShake");
 
-  if (isVisualisatioVisible) {
-    visualisation.classList.add("activeVisualisation");
-    visualisationImg.classList.add("visualisationImgActive");
+  configuratorImg.classList.add('configuratorUnactive');
+  accessoriesImg.classList.add('accessoriesUnactive');
+  tab.classList.add("hiddenTab");
 
-    tab.classList.add("hiddenTab");
-    unactiveAccordion.classList.add("unactiveAccordionShow")
-    body[0].classList.add("bodyScroll");
-  }
+  visualisation.classList.add("activeVisualisation");
+  visualisationImg.classList.add("visualisationImgActive");
+
+  accordionUnactive.classList.add("accordionUnactiveShow")
+  body[0].classList.add("bodyScroll");
+
+  isVisualisatioVisible = true;
 }
 const hideVisualisation = () => {
   tab.classList.remove("moveTabLeft");
 
-  if (isVisualisatioVisible) {
-    visualisation.classList.remove("activeVisualisation");
-    visualisationImg.classList.remove("visualisationImgActive");
+  visualisation.classList.remove("activeVisualisation");
+  visualisationImg.classList.remove("visualisationImgActive");
 
-    tab.classList.remove("hiddenTab");
+  configuratorImg.classList.remove('configuratorUnactive');
+  accessoriesImg.classList.remove('accessoriesUnactive');
+  tab.classList.remove("hiddenTab");
 
-    unactiveAccordion.classList.remove("unactiveAccordionShow")
-    accordion.classList.remove("activeAccordion")
-    body[0].classList.remove("bodyScroll");
-  }
+  accordionUnactive.classList.remove("accordionUnactiveShow")
+  accordion.classList.remove("activeAccordion")
+  body[0].classList.remove("bodyScroll");
+
   isVisualisatioVisible = false;
 }
 const switchTab = () => {
@@ -109,7 +114,7 @@ tab.addEventListener('mouseleave', () => {
   tab.classList.remove("moveTabLeft");
 })
 
-unactiveAccordion.addEventListener('click', () => {
+accordionUnactive.addEventListener('click', () => {
   if (!isAccordionActive) {
     accordion.classList.add("activeAccordion");
   }
