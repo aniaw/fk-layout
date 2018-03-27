@@ -16,7 +16,8 @@ const configuratorImg = document.getElementById('configuratorImg');
 const accessoriesImg = document.getElementById('accessoriesImg');
 const shellColorFooter = document.getElementById('shellColorFooter');
 const shellColorToScroll = document.getElementById('shellColorToScroll');
-const summary = document.getElementById('summaryImg');
+const summaryImg = document.getElementById('summaryImg');
+const summary = document.getElementById('summary');
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
@@ -167,12 +168,16 @@ goToSummaryButton.addEventListener('click', () => {
 
   visualisationImg.classList.remove('moveImageShake');
   visualisationImg.classList.add('moveVisualisatonImgSummary');
-  // body[0].classList.add('bodyScroll');
+  body[0].classList.add('bodyScroll');
 
   setTimeout(() => {
-    summary.classList.add('summaryActive');
+    summaryImg.classList.add('summaryImgActive');
     backToAccessoriesButton.classList.add('backToAccessoriesButtonActive');
   }, 500)
+
+  setTimeout(()=>{
+    summary.classList.add('summaryActive');
+  },600)
 
 });
 
@@ -189,8 +194,9 @@ backToAccessoriesButton.addEventListener('click', () => {
   visualisationImg.classList.remove('moveVisualisatonImgSummary');
 
   summary.classList.remove('summaryActive');
+  summaryImg.classList.remove('summaryImgActive');
   backToAccessoriesButton.classList.remove('backToAccessoriesButtonActive');
-  // body[0].classList.remove('bodyScroll');
+  body[0].classList.remove('bodyScroll');
 });
 
 // VISUALISATION
