@@ -27,6 +27,11 @@ const showVisualisation = () => {
   configuratorImg.classList.add('configuratorUnactive');
   accessoriesImg.classList.add('accessoriesUnactive');
 
+  //disable buttons on tab
+  addAccessoriesButton.classList.add('disableButton');
+  backToConfiguratorButton.classList.add('disableButton');
+  goToSummaryButton.classList.add('disableButton');
+
   //move tab to left (hide tabs)
   tab.classList.add("hiddenTab");
 
@@ -49,6 +54,11 @@ const hideVisualisation = () => {
   //move tab content to left (bigger padding)
   configuratorImg.classList.remove('configuratorUnactive');
   accessoriesImg.classList.remove('accessoriesUnactive');
+
+  //activate buttons on tab
+  addAccessoriesButton.classList.remove('disableButton');
+  backToConfiguratorButton.classList.remove('disableButton');
+  goToSummaryButton.classList.remove('disableButton');
 
   //move tab to right (show tabs)
   tab.classList.remove("hiddenTab");
