@@ -261,3 +261,28 @@ body {
   transform: translate3d(-3%, 0, 0);
   opacity: 0;
 }
+
+.addAccessoriesButton {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.backToConfiguratorButton{
+  position: absolute;
+  left: 40%;
+  top: 5%;
+  cursor: pointer;
+  z-index: 1;
+
+}
+
+.goToSummaryButton {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  cursor: pointer;
+  z-index: 1;
+}

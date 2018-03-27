@@ -8,6 +8,9 @@ const accordion = document.getElementById("accordion");
 const unactiveAccordion = document.getElementById("unactiveAccordion");
 const accessoriesButton = document.getElementById("accessoriesButton");
 const tab = document.getElementById("tab");
+const addAccessoriesButton = document.getElementById("addAccessoriesButton");
+const backToConfiguratorButton = document.getElementById("backToConfiguratorButton");
+const goToSummaryButton = document.getElementById("goToSummaryButton");
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
@@ -42,7 +45,6 @@ const hideVisualisation = () => {
   }
   isVisualisatioVisible = false;
 }
-
 const switchTab = () => {
   if (isTabVisible) {
     //show accessories with delay
@@ -63,6 +65,17 @@ const switchTab = () => {
   }
   isTabVisible = !isTabVisible;
 }
+
+//NAVIGATION BUTTONS
+addAccessoriesButton.addEventListener('click', () => {
+  switchTab();
+})
+backToConfiguratorButton.addEventListener('click', () => {
+  switchTab();
+})
+goToSummaryButton.addEventListener('click', () => {
+
+})
 
 // VISUALISATION
 visualisation.addEventListener('mouseenter', () => {
@@ -112,10 +125,8 @@ accessoriesButton.addEventListener('click', () => {
     switchTab();
   }
   else {
-    console.log('jestes', isVisualisatioVisible);
     hideVisualisation();
     setTimeout(() => {
-      console.log('timeuot?');
       switchTab();
     }, 500)
   }
