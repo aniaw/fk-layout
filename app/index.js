@@ -19,40 +19,56 @@ let isTabVisible = true;
 let isAccordionActive = false;
 
 const showVisualisation = () => {
+  // clean after shake
   tab.classList.remove("moveTabRight");
   visualisationImg.classList.remove("moveImageShake");
 
+  //move tab content to right (smaller padding)
   configuratorImg.classList.add('configuratorUnactive');
   accessoriesImg.classList.add('accessoriesUnactive');
+
+  //move tab to left (hide tabs)
   tab.classList.add("hiddenTab");
 
+  //move visualisation  & chair to left (show visualisation)
   visualisation.classList.add("activeVisualisation");
   visualisationImg.classList.add("visualisationImgActive");
 
+  //show accordion (properties)
   accordionUnactive.classList.add("accordionUnactiveShow")
+
+  // activate scroll on body
   body[0].classList.add("bodyScroll");
 
   isVisualisatioVisible = true;
 }
 const hideVisualisation = () => {
+  //cleat after shake
   tab.classList.remove("moveTabLeft");
 
+  //move tab content to left (bigger padding)
+  configuratorImg.classList.remove('configuratorUnactive');
+  accessoriesImg.classList.remove('accessoriesUnactive');
+
+  //move tab to right (show tabs)
+  tab.classList.remove("hiddenTab");
+
+  //move visualisation  & chair to right (hide visualisation)
   visualisation.classList.remove("activeVisualisation");
   visualisationImg.classList.remove("visualisationImgActive");
 
-  configuratorImg.classList.remove('configuratorUnactive');
-  accessoriesImg.classList.remove('accessoriesUnactive');
-  tab.classList.remove("hiddenTab");
-
+  //hide accordion (properties)
   accordionUnactive.classList.remove("accordionUnactiveShow")
   accordion.classList.remove("activeAccordion")
+
+  // activate scroll on tab
   body[0].classList.remove("bodyScroll");
 
   isVisualisatioVisible = false;
 }
 const switchTab = () => {
   if (isTabVisible) {
-    //show accessories with delay
+    // show accessories with delay
     setTimeout(() => {
       accessories.classList.add("showAccessories");
     }, 400)
@@ -62,7 +78,7 @@ const switchTab = () => {
   else {
     accessories.classList.remove("showAccessories");
 
-    //show configurator with delay
+    // show configurator with delay
     setTimeout(() => {
       configurator.classList.remove("hideConfigurator");
     }, 400)
@@ -71,7 +87,7 @@ const switchTab = () => {
   isTabVisible = !isTabVisible;
 }
 
-//NAVIGATION BUTTONS
+// NAVIGATION BUTTONS
 addAccessoriesButton.addEventListener('click', () => {
   switchTab();
 })
