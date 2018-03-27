@@ -13,10 +13,18 @@ const backToConfiguratorButton = document.getElementById("backToConfiguratorButt
 const goToSummaryButton = document.getElementById("goToSummaryButton");
 const configuratorImg = document.getElementById("configuratorImg");
 const accessoriesImg = document.getElementById("accessoriesImg");
+const shellColorFooter = document.getElementById("shellColorFooter");
+const shellColorToScroll = document.getElementById("shellColorToScroll");
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
 let isAccordionActive = false;
+const tabs = {
+  OPTIONS: 'OPTIONS',
+  ACCESSORIES: 'ACCESSORIES',
+  SUMMARY: 'SUMMARY'
+}
+let activeTab = tabs.OPTIONS;
 
 const showVisualisation = () => {
   // clean after shake
@@ -47,6 +55,7 @@ const showVisualisation = () => {
 
   isVisualisatioVisible = true;
 }
+
 const hideVisualisation = () => {
   //cleat after shake
   tab.classList.remove("moveTabLeft");
@@ -76,6 +85,7 @@ const hideVisualisation = () => {
 
   isVisualisatioVisible = false;
 }
+
 const switchTab = () => {
   if (isTabVisible) {
     // show accessories with delay
@@ -84,18 +94,58 @@ const switchTab = () => {
     }, 400)
     configurator.classList.add("hideConfigurator");
     accessoriesButton.textContent = "show options"
+    activeTab = tabs.ACCESSORIES;
+
   }
   else {
     accessories.classList.remove("showAccessories");
-
     // show configurator with delay
     setTimeout(() => {
       configurator.classList.remove("hideConfigurator");
     }, 400)
     accessoriesButton.textContent = "add accessories"
+    activeTab = tabs.OPTIONS;
   }
   isTabVisible = !isTabVisible;
 }
+
+const scrollToElement = () => {
+  shellColorToScroll.scrollIntoView({ behavior: 'smooth' })
+
+  setTimeout(() => {
+    shellColorToScroll.classList.add('scrolled')
+  }, 500);
+  requestAnimationFrame(() => {
+    shellColorToScroll.classList.remove('scrolled')
+  });
+}
+
+const scrollTab = () => {
+  if (tabs.OPTIONS === activeTab) {
+    scrollToElement();
+  }
+  else {
+    switchTab();
+    setTimeout(() => {
+      scrollToElement();
+    }, 600)
+  }
+}
+
+// SCROLL
+shellColorFooter.addEventListener('click', () => {
+  if (isVisualisatioVisible) {
+    hideVisualisation();
+
+    setTimeout(() => {
+      scrollTab();
+    }, 1000)
+  }
+  else {
+    scrollTab();
+  }
+
+});
 
 // NAVIGATION BUTTONS
 addAccessoriesButton.addEventListener('click', () => {
