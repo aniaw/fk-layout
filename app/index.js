@@ -1,20 +1,22 @@
-const body = document.getElementsByTagName("body");
-const configurator = document.getElementById("configurator");
-const visualisation = document.getElementById("visualisation");
-const accessories = document.getElementById("accessories");
-const visualisationImg = document.getElementById("visualisationImg");
-const footerPanel = document.getElementById("footerPanel");
-const accordion = document.getElementById("accordion");
-const accordionUnactive = document.getElementById("accordionUnactive");
-const accessoriesButton = document.getElementById("accessoriesButton");
-const tab = document.getElementById("tab");
-const addAccessoriesButton = document.getElementById("addAccessoriesButton");
-const backToConfiguratorButton = document.getElementById("backToConfiguratorButton");
-const goToSummaryButton = document.getElementById("goToSummaryButton");
-const configuratorImg = document.getElementById("configuratorImg");
-const accessoriesImg = document.getElementById("accessoriesImg");
-const shellColorFooter = document.getElementById("shellColorFooter");
-const shellColorToScroll = document.getElementById("shellColorToScroll");
+const body = document.getElementsByTagName('body');
+const configurator = document.getElementById('configurator');
+const visualisation = document.getElementById('visualisation');
+const accessories = document.getElementById('accessories');
+const visualisationImg = document.getElementById('visualisationImg');
+const footerPanel = document.getElementById('footerPanel');
+const accordion = document.getElementById('accordion');
+const accordionUnactive = document.getElementById('accordionUnactive');
+const accessoriesButton = document.getElementById('accessoriesButton');
+const tab = document.getElementById('tab');
+const addAccessoriesButton = document.getElementById('addAccessoriesButton');
+const backToConfiguratorButton = document.getElementById('backToConfiguratorButton');
+const goToSummaryButton = document.getElementById('goToSummaryButton');
+const backToAccessoriesButton = document.getElementById('backToAccessoriesButton');
+const configuratorImg = document.getElementById('configuratorImg');
+const accessoriesImg = document.getElementById('accessoriesImg');
+const shellColorFooter = document.getElementById('shellColorFooter');
+const shellColorToScroll = document.getElementById('shellColorToScroll');
+const summary = document.getElementById('summaryImg');
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
@@ -28,8 +30,8 @@ let activeTab = tabs.OPTIONS;
 
 const showVisualisation = () => {
   // clean after shake
-  tab.classList.remove("moveTabRight");
-  visualisationImg.classList.remove("moveImageShake");
+  tab.classList.remove('moveTabRight');
+  visualisationImg.classList.remove('moveImageShake');
 
   //move tab content to right (smaller padding)
   configuratorImg.classList.add('configuratorUnactive');
@@ -41,24 +43,24 @@ const showVisualisation = () => {
   goToSummaryButton.classList.add('disableButton');
 
   //move tab to left (hide tabs)
-  tab.classList.add("hiddenTab");
+  tab.classList.add('hiddenTab');
 
   //move visualisation  & chair to left (show visualisation)
-  visualisation.classList.add("activeVisualisation");
-  visualisationImg.classList.add("visualisationImgActive");
+  visualisation.classList.add('activeVisualisation');
+  visualisationImg.classList.add('visualisationImgActive');
 
   //show accordion (properties)
-  accordionUnactive.classList.add("accordionUnactiveShow")
+  accordionUnactive.classList.add('accordionUnactiveShow')
 
   // activate scroll on body
-  body[0].classList.add("bodyScroll");
+  body[0].classList.add('bodyScroll');
 
   isVisualisatioVisible = true;
 }
 
 const hideVisualisation = () => {
   //cleat after shake
-  tab.classList.remove("moveTabLeft");
+  tab.classList.remove('moveTabLeft');
 
   //move tab content to left (bigger padding)
   configuratorImg.classList.remove('configuratorUnactive');
@@ -70,18 +72,18 @@ const hideVisualisation = () => {
   goToSummaryButton.classList.remove('disableButton');
 
   //move tab to right (show tabs)
-  tab.classList.remove("hiddenTab");
+  tab.classList.remove('hiddenTab');
 
   //move visualisation  & chair to right (hide visualisation)
-  visualisation.classList.remove("activeVisualisation");
-  visualisationImg.classList.remove("visualisationImgActive");
+  visualisation.classList.remove('activeVisualisation');
+  visualisationImg.classList.remove('visualisationImgActive');
 
   //hide accordion (properties)
-  accordionUnactive.classList.remove("accordionUnactiveShow")
-  accordion.classList.remove("activeAccordion")
+  accordionUnactive.classList.remove('accordionUnactiveShow')
+  accordion.classList.remove('activeAccordion')
 
   // activate scroll on tab
-  body[0].classList.remove("bodyScroll");
+  body[0].classList.remove('bodyScroll');
 
   isVisualisatioVisible = false;
 }
@@ -90,20 +92,20 @@ const switchTab = () => {
   if (isTabVisible) {
     // show accessories with delay
     setTimeout(() => {
-      accessories.classList.add("showAccessories");
+      accessories.classList.add('showAccessories');
     }, 400)
-    configurator.classList.add("hideConfigurator");
-    accessoriesButton.textContent = "show options"
+    configurator.classList.add('hideConfigurator');
+    accessoriesButton.textContent = 'show options'
     activeTab = tabs.ACCESSORIES;
 
   }
   else {
-    accessories.classList.remove("showAccessories");
+    accessories.classList.remove('showAccessories');
     // show configurator with delay
     setTimeout(() => {
-      configurator.classList.remove("hideConfigurator");
+      configurator.classList.remove('hideConfigurator');
     }, 400)
-    accessoriesButton.textContent = "add accessories"
+    accessoriesButton.textContent = 'add accessories'
     activeTab = tabs.OPTIONS;
   }
   isTabVisible = !isTabVisible;
@@ -128,7 +130,7 @@ const scrollTab = () => {
     switchTab();
     setTimeout(() => {
       scrollToElement();
-    }, 600)
+    }, 300)
   }
 }
 
@@ -150,29 +152,64 @@ shellColorFooter.addEventListener('click', () => {
 // NAVIGATION BUTTONS
 addAccessoriesButton.addEventListener('click', () => {
   switchTab();
-})
+});
 backToConfiguratorButton.addEventListener('click', () => {
   switchTab();
-})
-goToSummaryButton.addEventListener('click', () => {
+});
 
-})
+goToSummaryButton.addEventListener('click', () => {
+  activeTab = tabs.SUMMARY;
+
+  tab.classList.add('hideTabs');
+  footerPanel.classList.add('footerPanelHidden');
+
+  visualisation.classList.add('hidePermamently');
+
+  visualisationImg.classList.remove('moveImageShake');
+  visualisationImg.classList.add('moveVisualisatonImgSummary');
+  // body[0].classList.add('bodyScroll');
+
+  setTimeout(() => {
+    summary.classList.add('summaryActive');
+    backToAccessoriesButton.classList.add('backToAccessoriesButtonActive');
+  }, 500)
+
+});
+
+backToAccessoriesButton.addEventListener('click', () => {
+  activeTab = tabs.ACCESSORIES;
+  tab.classList.remove('hideTabs');
+  footerPanel.classList.remove('footerPanelHidden');
+
+  setTimeout(() => {
+    visualisation.classList.remove('hidePermamently');
+  }, 500)
+
+  visualisationImg.classList.remove('moveImageShake');
+  visualisationImg.classList.remove('moveVisualisatonImgSummary');
+
+  summary.classList.remove('summaryActive');
+  backToAccessoriesButton.classList.remove('backToAccessoriesButtonActive');
+  // body[0].classList.remove('bodyScroll');
+});
 
 // VISUALISATION
 visualisation.addEventListener('mouseenter', () => {
   if (!isVisualisatioVisible) {
-    tab.classList.add("moveTabRight")
-    visualisationImg.classList.add("moveImageShake")
+    tab.classList.add('moveTabRight')
+    visualisationImg.classList.add('moveImageShake')
   }
 })
 
 visualisation.addEventListener('mouseleave', () => {
-  tab.classList.remove("moveTabRight");
-  visualisationImg.classList.remove("moveImageShake")
+  tab.classList.remove('moveTabRight');
+  visualisationImg.classList.remove('moveImageShake')
 })
 
 visualisation.addEventListener('click', () => {
-  showVisualisation();
+  if (activeTab !== tabs.SUMMARY) {
+    showVisualisation();
+  }
 })
 
 tab.addEventListener('click', () => {
@@ -182,20 +219,20 @@ tab.addEventListener('click', () => {
 // TAB
 tab.addEventListener('mouseenter', () => {
   if (isVisualisatioVisible) {
-    tab.classList.add("moveTabLeft");
+    tab.classList.add('moveTabLeft');
   }
 })
 
 tab.addEventListener('mouseleave', () => {
-  tab.classList.remove("moveTabLeft");
+  tab.classList.remove('moveTabLeft');
 })
 
 accordionUnactive.addEventListener('click', () => {
   if (!isAccordionActive) {
-    accordion.classList.add("activeAccordion");
+    accordion.classList.add('activeAccordion');
   }
   else {
-    accordion.classList.remove("activeAccordion");
+    accordion.classList.remove('activeAccordion');
   }
   isAccordionActive = !isAccordionActive;
 })

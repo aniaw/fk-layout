@@ -73,7 +73,7 @@ body {
   transition: transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
 }
 
-.shellColorToScroll{
+.shellColorToScroll {
   position: absolute;
   top: 58%;
   left: 40%;
@@ -82,6 +82,7 @@ body {
   border-radius: 50%;
   border: 2px solid rgb(0, 0, 80);
 }
+
 .accessories {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
@@ -134,9 +135,6 @@ body {
 
 .visualisationContainer {
   width: 100%;
-  max-width: 1360px;
-  min-width: 1060px;
-  margin: 0 auto;
   position: relative;
 }
 
@@ -145,10 +143,61 @@ body {
   cursor: auto;
 }
 
+.hidePermamently {
+  display: none;
+  cursor: auto;
+
+}
+
+.backToAccessoriesButton {
+  transition: all 0.3s ease-out;
+  transform: translate3d(30%, 0, 0);
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.backToAccessoriesButtonActive {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.summaryWrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.summaryImg {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  pointer-events: none;
+  transform: translate3d(30%, 0, 0);
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  z-index: -2;
+}
+
+.summaryActive {
+  opacity: 1;
+  overflow-y: auto;
+  transform: translate3d(0, 0, 0);
+}
+
 .accordion {
   position: absolute;
   top: 440px;
-  right: 5%;
+  right: 20%;
   z-index: 2;
   display: none;
 }
@@ -162,10 +211,10 @@ body {
   width: 420px;
   position: absolute;
   top: 300px;
-  right: 5%;
+  right: 20%;
   z-index: 1;
   opacity: 0;
-  cursor: pointer;
+  pointer-events: none;
   transform: translate3d(5%, 0, 0);
 }
 
@@ -173,23 +222,8 @@ body {
   opacity: 1;
   transition: all 0.3s ease-out 0.6s;
   transform: translate3d(0, 0, 0);
-}
-
-.animateAccordion {
-  display: block;
-  animation: slide 0.5s ease-out;
-}
-
-@keyframes slide {
-  0% {
-    opacity: 0;
-    transform: translate3d(3%, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .footerPanel {
@@ -200,7 +234,10 @@ body {
   bottom: 0;
   z-index: 1;
   transition: transform 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+}
 
+.footerPanelHidden {
+  transform: translate3d(0, 100%, 0);
 }
 
 .content {
@@ -350,6 +387,15 @@ body {
   }
 }
 
+.hideTabs {
+  transform: translate3d(-100%, 0, 0);
+  position: fixed;
+}
+
+.moveVisualisatonImgSummary {
+  transform: translate3d(-100%, 0, 0);
+}
+
 @media only screen and (min-width: 1920px) {
   .visualisationImgActive {
     transform: translate3d(-130%, 0, 0);
@@ -377,5 +423,14 @@ body {
     width: 90px;
     height: 90px;
     border-radius: 50%;
+  }
+
+  .moveVisualisatonImgSummary {
+    transform: translate3d(-160%, 0, 0);
+  }
+
+  .summaryImg {
+    top: 5%;
+    right: 20%;
   }
 }
