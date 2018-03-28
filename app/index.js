@@ -32,7 +32,8 @@ let activeTab = tabs.OPTIONS;
 const showVisualisation = () => {
   // clean after shake
   tab.classList.remove('moveTabRight');
-  visualisationImg.classList.remove('moveImageShake');
+  // commented because when move click on visualisation part we want to start chair animation from "moved" posiation
+  // visualisationImg.classList.remove('moveImageShake');
 
   //move tab content to right (smaller padding)
   configuratorImg.classList.add('configuratorUnactive');

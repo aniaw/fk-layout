@@ -402,7 +402,7 @@ body {
 
 @media only screen and (min-width: 1920px) {
   .visualisationImg {
-    width: 800px;
+    width: 700px;
   }
   .visualisationImgActive {
     transform: translate3d(-130%, 0, 0);
@@ -437,7 +437,8 @@ body {
   }
 
   .summaryImg {
-    top: 5%;
+    width: 800px;
+    top: 12%;
     right: 20%;
   }
 }
