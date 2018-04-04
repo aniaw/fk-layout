@@ -18,6 +18,7 @@ const shellColorFooter = document.getElementById('shellColorFooter');
 const shellColorToScroll = document.getElementById('shellColorToScroll');
 const summaryImg = document.getElementById('summaryImg');
 const summary = document.getElementById('summary');
+const popup = document.getElementById('popup');
 
 let isVisualisatioVisible = false;
 let isTabVisible = true;
@@ -32,8 +33,7 @@ let activeTab = tabs.OPTIONS;
 const showVisualisation = () => {
   // clean after shake
   tab.classList.remove('moveTabRight');
-  // commented because when move click on visualisation part we want to start chair animation from "moved" posiation
-  // visualisationImg.classList.remove('moveImageShake');
+  visualisationImg.classList.remove('moveImageShake');
 
   //move tab content to right (smaller padding)
   configuratorImg.classList.add('configuratorUnactive');
@@ -90,25 +90,40 @@ const hideVisualisation = () => {
   isVisualisatioVisible = false;
 }
 
-const switchTab = () => {
-  if (isTabVisible) {
-    // show accessories with delay
-    setTimeout(() => {
-      accessories.classList.add('showAccessories');
-    }, 400)
+const showAccessories = (byButton) => {
+  if (!!byButton) {
+    accessories.classList.add('showAccessories');
     configurator.classList.add('hideConfigurator');
-    accessoriesButton.textContent = 'show options'
-    activeTab = tabs.ACCESSORIES;
-
   }
   else {
-    accessories.classList.remove('showAccessories');
-    // show configurator with delay
     setTimeout(() => {
-      configurator.classList.remove('hideConfigurator');
-    }, 400)
-    accessoriesButton.textContent = 'add accessories'
-    activeTab = tabs.OPTIONS;
+      accessories.classList.add('showAccessories');
+    }, 400);
+    configurator.classList.add('hideConfigurator');
+  }
+  backToConfiguratorButton.classList.add('backToConfiguratorButtonActive');
+  accessoriesButton.textContent = 'See your order'
+  activeTab = tabs.ACCESSORIES;
+
+}
+
+const showConfigurator = () => {
+  accessories.classList.remove('showAccessories');
+  // show configurator with delay
+  setTimeout(() => {
+    configurator.classList.remove('hideConfigurator');
+  }, 400)
+  backToConfiguratorButton.classList.remove('backToConfiguratorButtonActive');
+  accessoriesButton.textContent = 'add accessories'
+  activeTab = tabs.OPTIONS;
+};
+
+const switchTab = () => {
+  if (isTabVisible) {
+    showAccessories();
+  }
+  else {
+    showConfigurator();
   }
   isTabVisible = !isTabVisible;
 }
@@ -136,8 +151,44 @@ const scrollTab = () => {
   }
 }
 
+const goToSummary = () => {
+  activeTab = tabs.SUMMARY;
+
+  tab.classList.add('hideTabs');
+  footerPanel.classList.add('footerPanelHidden');
+
+  visualisation.classList.add('hidePermamently');
+
+  visualisationImg.classList.remove('moveImageShake');
+  visualisationImg.classList.add('moveVisualisatonImgSummary');
+  body[0].classList.add('bodyScroll');
+
+  setTimeout(() => {
+    summaryImg.classList.add('summaryImgActive');
+    backToAccessoriesButton.classList.add('backToAccessoriesButtonActive');
+  }, 500)
+
+  setTimeout(() => {
+    summary.classList.add('summaryActive');
+  }, 600)
+}
+
+// POPUP
+shellColorToScroll.addEventListener('mouseenter', () => {
+  popup.classList.add('popperActive');
+});
+
+shellColorToScroll.addEventListener('mouseleave', () => {
+  popup.classList.remove('popperActive');
+});
+
 // SCROLL
 shellColorFooter.addEventListener('click', () => {
+  shellColorFooter.classList.add('scrolled')
+  setTimeout(() => {
+    shellColorFooter.classList.remove('scrolled')
+  }, 500);
+
   if (isVisualisatioVisible) {
     hideVisualisation();
 
@@ -160,26 +211,7 @@ backToConfiguratorButton.addEventListener('click', () => {
 });
 
 goToSummaryButton.addEventListener('click', () => {
-  activeTab = tabs.SUMMARY;
-
-  tab.classList.add('hideTabs');
-  footerPanel.classList.add('footerPanelHidden');
-
-  visualisation.classList.add('hidePermamently');
-
-  visualisationImg.classList.remove('moveImageShake');
-  visualisationImg.classList.add('moveVisualisatonImgSummary');
-  body[0].classList.add('bodyScroll');
-
-  setTimeout(() => {
-    summaryImg.classList.add('summaryImgActive');
-    backToAccessoriesButton.classList.add('backToAccessoriesButtonActive');
-  }, 500)
-
-  setTimeout(()=>{
-    summary.classList.add('summaryActive');
-  },600)
-
+  goToSummary();
 });
 
 backToAccessoriesButton.addEventListener('click', () => {
@@ -245,14 +277,17 @@ accordionUnactive.addEventListener('click', () => {
 })
 
 accessoriesButton.addEventListener('click', () => {
-  if (!isVisualisatioVisible) {
-    hideVisualisation();
-    switchTab();
+  if (activeTab === tabs.ACCESSORIES) {
+    goToSummary();
   }
   else {
-    hideVisualisation();
-    setTimeout(() => {
+    if (!isVisualisatioVisible) {
       switchTab();
-    }, 500)
+    }
+    else {
+      hideVisualisation();
+      showAccessories(true);
+    }
   }
+
 })

@@ -56,8 +56,12 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
+  transform: translate3d(0, 0, 0);
   opacity: 1;
-  transition: padding 0.4s linear, opacity 0.4s linear, transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+  transition: padding 0.4s linear,
+  opacity 0.4s linear,
+  transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
   box-shadow: 0 10px 0px 0px white, 0 -10px 0px 0px white, 1px -3px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,6 +77,21 @@ body {
   transition: transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
 }
 
+.popup {
+  position: absolute;
+  top:51%;
+  left: 35.5%;
+  transition: all 0.15s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  opacity: 0;
+  z-index: 2;
+  transform: translate3d(0, 30%, 0) scale(0.7);
+}
+
+.popperActive {
+  opacity: 1;
+  transform: translate3d(0, 2%, 0) scale(1);
+}
+
 .shellColorToScroll {
   position: absolute;
   top: 61.5%;
@@ -81,18 +100,24 @@ body {
   height: 73px;
   border-radius: 50%;
   border: 2px solid rgb(0, 0, 80);
+  z-index: 1;
+  cursor: pointer;
+
 }
 
 .accessories {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
   height: 1600px;
-  transition: padding 0.4s linear, opacity 0.4s linear, transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+  transition: padding 0.4s linear,
+  opacity 0.4s linear,
+  transform 0.4s cubic-bezier(0.420, 0.000, 0.580, 1.000);
   padding: 18% 15% 0 40%;
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate3d(-3%, 0, 0);
+  z-index: 0;
+  transform: translate3d(-15%, 0, 0);
   opacity: 0;
   box-shadow: 0 10px 0px 0px white, 0 -10px 0px 0px white, 1px -3px 10px rgba(0, 0, 0, 0.1);
 }
@@ -335,11 +360,13 @@ body {
 .showAccessories {
   transform: translate3d(0, 0, 0);
   opacity: 1;
+  z-index: 2;
 }
 
 .hideConfigurator {
-  transform: translate3d(-3%, 0, 0);
+  transform: translate3d(-15%, 0, 0);
   opacity: 0;
+  z-index: 1;
 }
 
 .addAccessoriesButton {
@@ -347,15 +374,20 @@ body {
   right: 10%;
   top: 5%;
   cursor: pointer;
-  z-index: 1;
+  z-index: 10;
 }
 
 .backToConfiguratorButton {
   position: absolute;
   right: 45%;
   top: 5%;
-  cursor: pointer;
+  pointer-events: none;
   z-index: 1;
+}
+
+.backToConfiguratorButtonActive {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .goToSummaryButton {
@@ -440,5 +472,11 @@ body {
     width: 800px;
     top: 12%;
     right: 20%;
+  }
+
+  .popup {
+    position: absolute;
+    top:64%;
+    left: 45.8%;
   }
 }
